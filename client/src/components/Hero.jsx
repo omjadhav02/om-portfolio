@@ -1,6 +1,6 @@
 function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 relative">
+    <section className="min-h-screen flex items-center justify-center px-6 relative pt-24">
 
       {/* Hero Glow */}
       <div className="absolute w-[700px] h-[700px] bg-cyan-500/10 rounded-full blur-[180px]" />
@@ -22,11 +22,9 @@ function Hero() {
         </p>
 
         <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-
           Full Stack Developer exploring the intersection
           of scalable systems, real-time applications,
           and modern digital experiences.
-
         </p>
 
         <p className="mt-6 text-cyan-400 text-sm tracking-[3px] uppercase">
