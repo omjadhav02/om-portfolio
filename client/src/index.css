@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #020617;
+  color: white;
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------- SPACE ANIMATIONS ---------- */
+
+@keyframes starsSlow {
+  from {
+    transform: translateY(-100vh);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes starsMedium {
+  from {
+    transform: translateY(-150vh);
+  }
+  to {
+    transform: translateY(150vh);
+  }
+}
+
+@keyframes starsFast {
+  from {
+    transform: translateY(-200vh);
+  }
+  to {
+    transform: translateY(200vh);
+  }
+}
+
+@keyframes rotateNebula {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.stars-slow {
+  animation: starsSlow 140s linear infinite;
+}
+
+.stars-medium {
+  animation: starsMedium 90s linear infinite;
+}
+
+.stars-fast {
+  animation: starsFast 50s linear infinite;
+}
+
+.nebula {
+  animation: rotateNebula 220s linear infinite;
+}
+
+
+@keyframes shootingStar {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(500px, 250px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    white,
+    rgba(255,255,255,0)
+  );
+
+  animation: shootingStar 1.5s linear forwards;
+
+  box-shadow:
+    0 0 10px white,
+    0 0 20px cyan;
+}
+
+
+@keyframes floatPlanet {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-planet {
+  animation: floatPlanet 12s ease-in-out infinite;
+}
