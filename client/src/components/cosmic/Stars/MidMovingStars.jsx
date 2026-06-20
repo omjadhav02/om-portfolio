@@ -1,7 +1,12 @@
 import { useEffect, useRef } from "react";
 
-function DeepSpace() {
+function MidMovingStars({ warpSpeed }) {
   const canvasRef = useRef(null);
+  const speedRef = useRef(warpSpeed);
+
+  useEffect(() => {
+    speedRef.current = warpSpeed;
+  }, [warpSpeed]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -42,7 +47,9 @@ function DeepSpace() {
 
       for (const star of stars) {
         // CONTROL SPEED HERE
-        star.z -= 1;
+        const speed = 0.3 * Math.pow(speedRef.current, 2);
+
+        star.z -= speed;
 
         if (star.z <= 1000) {
           star.z = 15000;
@@ -51,7 +58,7 @@ function DeepSpace() {
           star.y = (Math.random() - 0.5) * height * 4;
         }
 
-        const k = 3000 / star.z;
+        const k = 1000 / star.z;
 
         const x = star.x * k + width / 2;
         const y = star.y * k + height / 2;
@@ -112,4 +119,4 @@ function DeepSpace() {
   );
 }
 
-export default DeepSpace;
+export default MidMovingStars;

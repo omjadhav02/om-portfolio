@@ -1,8 +1,12 @@
 import { useEffect, useRef } from "react";
 
-function DeepSpace() {
+function SlowMovingStars({ warpSpeed }) {
   const canvasRef = useRef(null);
+    const speedRef = useRef(warpSpeed);
 
+   useEffect(() => {
+    speedRef.current = warpSpeed;
+  }, [warpSpeed]);
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -15,12 +19,12 @@ function DeepSpace() {
 
     const stars = [];
 
-    const STAR_COUNT = 350;
+    const STAR_COUNT = 1000;
 
     for (let i = 0; i < STAR_COUNT; i++) {
       stars.push({
-        x: (Math.random() - 0.5 )* width * 4,
-        y: (Math.random() - 0.5 ) * height * 4,
+        x: (Math.random() - 0.5 )* width * 2,
+        y: (Math.random() - 0.5 ) * height * 2,
 
         // MUCH farther away
         z: Math.random() * 12000 + 3000,
@@ -42,16 +46,17 @@ function DeepSpace() {
 
       for (const star of stars) {
         // CONTROL SPEED HERE
-        star.z -= 1;
+        const speed = 0.1 * Math.pow(speedRef.current, 1.8);
+        star.z -= speed;
 
         if (star.z <= 1000) {
           star.z = 15000;
 
-          star.x = (Math.random() - 0.5) * width * 4;
-          star.y = (Math.random() - 0.5) * height * 4;
+          star.x = (Math.random() - 0.5) * width * 2;
+          star.y = (Math.random() - 0.5) * height * 2;
         }
 
-        const k = 3000 / star.z;
+        const k = 1000 / star.z;
 
         const x = star.x * k + width / 2;
         const y = star.y * k + height / 2;
@@ -62,7 +67,7 @@ function DeepSpace() {
         const size =
           Math.max(
             0.2,
-            progress * 1.2
+            progress * 0.7
           );
 
         const opacity =
@@ -112,4 +117,4 @@ function DeepSpace() {
   );
 }
 
-export default DeepSpace;
+export default SlowMovingStars;

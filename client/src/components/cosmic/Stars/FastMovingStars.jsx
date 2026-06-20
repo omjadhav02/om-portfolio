@@ -1,10 +1,16 @@
 import { useEffect, useRef } from "react";
 
-function Starfield() {
+function FastMovingStars({ warpSpeed }) {
   const canvasRef = useRef(null);
+  const speedRef = useRef(warpSpeed);
+
+   useEffect(() => {
+    speedRef.current = warpSpeed;
+  }, [warpSpeed]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    
     const ctx = canvas.getContext("2d");
 
     let width = window.innerWidth;
@@ -15,7 +21,7 @@ function Starfield() {
 
     const stars = [];
 
-    const STAR_COUNT = 5;
+    const STAR_COUNT = 15;
 
     for (let i = 0; i < STAR_COUNT; i++) {
       stars.push({
@@ -40,7 +46,8 @@ function Starfield() {
       ctx.fillRect(0, 0, width, height);
 
       for (const star of stars) {
-        star.z -= 4;
+        const speed = 2 * Math.pow(speedRef.current, 1.5);
+        star.z -= speed;
 
         if (star.z <= 0) {
           star.z = width;
@@ -49,17 +56,42 @@ function Starfield() {
           star.y = Math.random() * height - height / 2;
         }
 
-        const k = 300 / star.z;
+        const k = 500 / star.z;
 
         const x = star.x * k + width / 2;
         const y = star.y * k + height / 2;
 
         const size = (1 - star.z / width) * 2;
 
-        ctx.beginPath();
-        ctx.fillStyle = "white";
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fill();
+        if (warpSpeed > 5) {
+            const streak =
+                warpSpeed * 4;
+
+            ctx.beginPath();
+
+            ctx.strokeStyle =
+                "rgba(255,255,255,0.8)";
+
+            ctx.moveTo(x, y);
+
+            ctx.lineTo(
+                x - (x - width / 2) * 0.02 * streak,
+                y - (y - height / 2) * 0.02 * streak
+            );
+
+            ctx.stroke();
+        } else {
+            ctx.beginPath();
+            ctx.fillStyle = "white";
+            ctx.arc(
+                x,
+                y,
+                size,
+                0,
+                Math.PI * 2
+            );
+            ctx.fill();
+        }
       }
 
       requestAnimationFrame(animate);
@@ -92,4 +124,4 @@ function Starfield() {
   );
 }
 
-export default Starfield;
+export default FastMovingStars;
