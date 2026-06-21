@@ -5,7 +5,9 @@ import {
   IoLocationOutline,
 } from "react-icons/io5";
 
-function Contact() {
+function Contact({ warpSpeed }) {
+  const energy = (warpSpeed - 1) / 9;
+
   return (
     <section
       id="contact"
@@ -13,15 +15,40 @@ function Contact() {
     >
       <div className="text-center mb-14">
 
-        <p className="uppercase tracking-[6px] text-cyan-400 mb-4">
+        <p
+          className="uppercase tracking-[6px] mb-4 transition-all duration-300"
+          style={{
+            color: "#67e8f9",
+            textShadow: `
+              0 0 ${energy * 20}px
+              rgba(34,211,238,.8)
+            `,
+          }}
+        >
           Mission Control
         </p>
 
-        <h2 className="text-5xl font-bold mb-4">
+        <h2
+          className="text-5xl font-bold mb-4 transition-all duration-300"
+          style={{
+            textShadow: `
+              0 0 ${energy * 40}px
+              rgba(34,211,238,.35)
+            `,
+          }}
+        >
           Let's Connect
         </h2>
 
-        <p className="text-slate-400 max-w-2xl mx-auto">
+        <p
+          className="max-w-2xl mx-auto transition-all duration-300"
+          style={{
+            color:
+              warpSpeed > 8
+                ? "#cbd5e1"
+                : "#94a3b8",
+          }}
+        >
           Whether it's a project, internship,
           collaboration, or just a conversation
           about technology and software engineering.
@@ -33,9 +60,45 @@ function Contact() {
 
         {/* Communication Card */}
 
-        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl p-8">
+        <div
+          className="rounded-3xl p-8 transition-all duration-500"
+          style={{
+            background: `
+              rgba(
+                255,
+                255,
+                255,
+                ${0.04 + energy * 0.08}
+              )
+            `,
 
-          <h3 className="text-xl font-semibold mb-8">
+            border: `
+              1px solid
+              rgba(
+                103,
+                232,
+                249,
+                ${0.1 + energy * 0.55}
+              )
+            `,
+
+            backdropFilter: "blur(20px)",
+
+            boxShadow: `
+              0 0 ${energy * 70}px
+              rgba(34,211,238,.18)
+            `,
+          }}
+        >
+          <h3
+            className="text-xl font-semibold mb-8"
+            style={{
+              textShadow: `
+                0 0 ${energy * 20}px
+                rgba(34,211,238,.5)
+              `,
+            }}
+          >
             Communication Channel
           </h3>
 
@@ -43,8 +106,30 @@ function Contact() {
 
             <div className="flex items-start gap-4">
 
-              <div className="p-3 rounded-xl bg-cyan-500/10">
-                <IoMailOutline className="text-xl text-cyan-400" />
+              <div
+                className="p-3 rounded-xl"
+                style={{
+                  background: `
+                    rgba(
+                      34,
+                      211,
+                      238,
+                      ${0.08 + energy * 0.2}
+                    )
+                  `,
+
+                  boxShadow: `
+                    0 0 ${energy * 20}px
+                    rgba(34,211,238,.25)
+                  `,
+                }}
+              >
+                <IoMailOutline
+                  className="text-xl"
+                  style={{
+                    color: "#67e8f9",
+                  }}
+                />
               </div>
 
               <div>
@@ -54,7 +139,13 @@ function Contact() {
 
                 <a
                   href="mailto:omjadhav1053@gmail.com"
-                  className="text-lg hover:text-cyan-400 transition"
+                  className="text-lg transition-all duration-300"
+                  style={{
+                    color:
+                      warpSpeed > 7
+                        ? "#e2e8f0"
+                        : "#ffffff",
+                  }}
                 >
                   omjadhav1053@gmail.com
                 </a>
@@ -64,8 +155,30 @@ function Contact() {
 
             <div className="flex items-start gap-4">
 
-              <div className="p-3 rounded-xl bg-cyan-500/10">
-                <IoLocationOutline className="text-xl text-cyan-400" />
+              <div
+                className="p-3 rounded-xl"
+                style={{
+                  background: `
+                    rgba(
+                      34,
+                      211,
+                      238,
+                      ${0.08 + energy * 0.2}
+                    )
+                  `,
+
+                  boxShadow: `
+                    0 0 ${energy * 20}px
+                    rgba(34,211,238,.25)
+                  `,
+                }}
+              >
+                <IoLocationOutline
+                  className="text-xl"
+                  style={{
+                    color: "#67e8f9",
+                  }}
+                />
               </div>
 
               <div>
@@ -86,41 +199,102 @@ function Contact() {
 
         {/* Social Card */}
 
-        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl p-8">
+        <div
+          className="rounded-3xl p-8 transition-all duration-500"
+          style={{
+            background: `
+              rgba(
+                255,
+                255,
+                255,
+                ${0.04 + energy * 0.08}
+              )
+            `,
 
-          <h3 className="text-xl font-semibold mb-8">
+            border: `
+              1px solid
+              rgba(
+                103,
+                232,
+                249,
+                ${0.1 + energy * 0.55}
+              )
+            `,
+
+            backdropFilter: "blur(20px)",
+
+            boxShadow: `
+              0 0 ${energy * 70}px
+              rgba(34,211,238,.18)
+            `,
+          }}
+        >
+          <h3
+            className="text-xl font-semibold mb-8"
+            style={{
+              textShadow: `
+                0 0 ${energy * 20}px
+                rgba(34,211,238,.5)
+              `,
+            }}
+          >
             Social Orbit
           </h3>
 
           <div className="space-y-4">
 
-            <a
-              href="https://github.com/omjadhav02"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/40 hover:text-cyan-400 transition"
-            >
-              <div className="flex items-center gap-3">
-                <IoLogoGithub className="text-xl" />
-                <span>GitHub</span>
-              </div>
+            {[
+              {
+                name: "GitHub",
+                icon: <IoLogoGithub className="text-xl" />,
+                link: "https://github.com/omjadhav02",
+              },
+              {
+                name: "LinkedIn",
+                icon: <IoLogoLinkedin className="text-xl" />,
+                link: "https://linkedin.com/in/omjadhav02",
+              },
+            ].map((item) => (
+              <a
+                key={item.name}
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  background: `
+                    rgba(
+                      255,
+                      255,
+                      255,
+                      ${0.03 + energy * 0.05}
+                    )
+                  `,
 
-              <span>→</span>
-            </a>
+                  border: `
+                    1px solid
+                    rgba(
+                      103,
+                      232,
+                      249,
+                      ${0.08 + energy * 0.45}
+                    )
+                  `,
 
-            <a
-              href="https://linkedin.com/in/omjadhav02"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/40 hover:text-cyan-400 transition"
-            >
-              <div className="flex items-center gap-3">
-                <IoLogoLinkedin className="text-xl" />
-                <span>LinkedIn</span>
-              </div>
+                  boxShadow: `
+                    0 0 ${energy * 20}px
+                    rgba(34,211,238,.15)
+                  `,
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  {item.icon}
+                  <span>{item.name}</span>
+                </div>
 
-              <span>→</span>
-            </a>
+                <span>→</span>
+              </a>
+            ))}
 
           </div>
 

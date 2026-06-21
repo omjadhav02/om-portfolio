@@ -1,4 +1,6 @@
-function Projects() {
+function Projects({ warpSpeed }) {
+  const energy = (warpSpeed - 1) / 9;
+
   const projects = [
     {
       title: "Renton",
@@ -33,11 +35,28 @@ function Projects() {
     >
       <div className="text-center mb-14">
 
-        <p className="uppercase tracking-[6px] text-cyan-400 mb-3">
+        <p
+          className="uppercase tracking-[6px] mb-3 transition-all duration-300"
+          style={{
+            color: "#67e8f9",
+            textShadow: `
+              0 0 ${energy * 20}px
+              rgba(34,211,238,.8)
+            `,
+          }}
+        >
           Mission Archive
         </p>
 
-        <h2 className="text-5xl font-bold">
+        <h2
+          className="text-5xl font-bold transition-all duration-300"
+          style={{
+            textShadow: `
+              0 0 ${energy * 40}px
+              rgba(34,211,238,.35)
+            `,
+          }}
+        >
           Featured Projects
         </h2>
 
@@ -48,21 +67,77 @@ function Projects() {
         {projects.map((project) => (
           <div
             key={project.title}
-            className="group backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/40 transition-all duration-300"
+            className="group rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2"
+            style={{
+              background: `
+                rgba(
+                  255,
+                  255,
+                  255,
+                  ${0.04 + energy * 0.08}
+                )
+              `,
+
+              border: `
+                1px solid
+                rgba(
+                  103,
+                  232,
+                  249,
+                  ${0.1 + energy * 0.55}
+                )
+              `,
+
+              backdropFilter: "blur(20px)",
+
+              boxShadow: `
+                0 0 ${energy * 70}px
+                rgba(34,211,238,.18)
+              `,
+            }}
           >
             <div className="flex justify-between items-start mb-5">
 
-              <h3 className="text-2xl font-bold">
+              <h3
+                className="text-2xl font-bold transition-all duration-300"
+                style={{
+                  textShadow: `
+                    0 0 ${energy * 25}px
+                    rgba(34,211,238,.45)
+                  `,
+                }}
+              >
                 {project.title}
               </h3>
 
-              <span className="text-cyan-400">
+              <span
+                className="text-2xl transition-all duration-300"
+                style={{
+                  filter: `
+                    drop-shadow(
+                      0 0 ${energy * 12}px
+                      rgba(34,211,238,.8)
+                    )
+                  `,
+                  transform: `
+                    scale(${1 + energy * 0.15})
+                  `,
+                }}
+              >
                 🚀
               </span>
 
             </div>
 
-            <p className="text-slate-300 leading-7 mb-6">
+            <p
+              className="leading-7 mb-6 transition-all duration-300"
+              style={{
+                color:
+                  warpSpeed > 8
+                    ? "#e2e8f0"
+                    : "#cbd5e1",
+              }}
+            >
               {project.description}
             </p>
 
@@ -71,13 +146,60 @@ function Projects() {
               {project.tech.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-sm text-cyan-300"
+                  className="px-3 py-1 rounded-full text-sm transition-all duration-300"
+                  style={{
+                    color:
+                      warpSpeed > 7
+                        ? "#cffafe"
+                        : "#67e8f9",
+
+                    background: `
+                      rgba(
+                        34,
+                        211,
+                        238,
+                        ${0.08 + energy * 0.18}
+                      )
+                    `,
+
+                    border: `
+                      1px solid
+                      rgba(
+                        34,
+                        211,
+                        238,
+                        ${0.15 + energy * 0.45}
+                      )
+                    `,
+
+                    boxShadow: `
+                      0 0 ${energy * 20}px
+                      rgba(34,211,238,.25)
+                    `,
+                  }}
                 >
                   {tech}
                 </span>
               ))}
 
             </div>
+
+            {warpSpeed > 8 && (
+              <div
+                className="absolute inset-0 rounded-3xl pointer-events-none"
+                style={{
+                  background: `
+                    linear-gradient(
+                      135deg,
+                      rgba(34,211,238,.03),
+                      transparent 40%,
+                      rgba(103,232,249,.04)
+                    )
+                  `,
+                }}
+              />
+            )}
+
           </div>
         ))}
 

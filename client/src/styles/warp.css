@@ -1,0 +1,72 @@
+:root {
+  --energy: 0;
+}
+
+.glass-card {
+  backdrop-filter: blur(20px);
+
+  background: rgba(
+    255,
+    255,
+    255,
+    calc(0.04 + var(--energy) * 0.08)
+  );
+
+  border: 1px solid rgba(
+    103,
+    232,
+    249,
+    calc(0.1 + var(--energy) * 0.7)
+  );
+
+  box-shadow:
+    0 0 calc(var(--energy) * 80px)
+    rgba(
+      34,
+      211,
+      238,
+      calc(var(--energy) * 0.4)
+    );
+
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform:
+    translateY(-4px)
+    scale(1.01);
+}
+
+.warp-heading {
+  text-shadow:
+    0 0 calc(var(--energy) * 40px)
+    rgba(34,211,238,.8);
+}
+
+.warp-accent {
+  color: rgb(
+    calc(180 + var(--energy) * 75),
+    255,
+    255
+  );
+}
+
+.warp-button {
+  box-shadow:
+    0 0 calc(var(--energy) * 40px)
+    rgba(34,211,238,.7);
+}
+
+.warp-ui {
+  filter:
+    saturate(
+      calc(
+        1 + var(--energy)
+      )
+    )
+    brightness(
+      calc(
+        1 + var(--energy) * .25
+      )
+    );
+}
